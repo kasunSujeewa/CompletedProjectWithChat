@@ -10,15 +10,15 @@ use Illuminate\Notifications\Notification;
 class FriendRequestNotification extends Notification
 {
     use Queueable;
-    public $requestedUser;
+    public $Friendrequest;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($requestedUser)
+    public function __construct($Friendrequest)
     {
-        $this->requestedUser = $requestedUser;
+        $this->Friendrequest = $Friendrequest;
     }
 
     /**
@@ -61,7 +61,7 @@ class FriendRequestNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'body' => $this->requestedUser->name . " requested You",
+            'body' => $this->Friendrequest->user->name . " requested You",
         ];
     }
 }

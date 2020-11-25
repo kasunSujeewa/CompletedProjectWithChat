@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Events\DemoEvent;
+use App\Events\NotificationDemo;
+
+
+use App\Notifications\commentNotification;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -23,9 +28,15 @@ class CommentController extends Controller
         $comment->user_id = Auth::user()->id;
         $comment->post_id = $id;
         $comment->comment = $request->comment;
+
+
         $comment->save();
+        $user2 = User::find($comment->post->user_id);
+        $user2->notify(new commentNotification($comment));
+        broadcast(new NotificationDemo($comment));
         $request = "deleted";
         broadcast(new DemoEvent($request));
+
         return response()->json(['comment' => $comment, 'message' => 'seccesfuly commented']);
     }
     public function update(Request $request, $id)

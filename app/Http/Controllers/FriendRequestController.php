@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Events\DemoEvent;
-
+use App\Events\friendRequest as EventsFriendRequest;
+use App\Events\NotificationDemo;
 
 
 use App\FriendRequest;
@@ -20,15 +21,16 @@ class FriendRequestController extends Controller
 {
     public function Store(Request $req)
     {
-        $request = new FriendRequest;
-        $request->user_id = Auth::user()->id;
-        $request->friend_id = $req->friend_id;
+        $Friendrequest = new FriendRequest;
+        $Friendrequest->user_id = Auth::user()->id;
+        $Friendrequest->friend_id = $req->friend_id;
 
-        $request->save();
+        $Friendrequest->save();
         $user = User::find($req->friend_id);
 
-        $user->notify(new FriendRequestNotification($request));
-        broadcast(new DemoEvent($request));
+        $user->notify(new FriendRequestNotification($Friendrequest));
+
+        broadcast(new EventsFriendRequest($Friendrequest));
     }
     public function index()
     {

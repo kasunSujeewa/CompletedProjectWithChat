@@ -7,19 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class commentNotification extends Notification
+class LikeNotification extends Notification
 {
     use Queueable;
-    public $comment;
-
+    public $like;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($comment)
+    public function __construct($like)
     {
-        $this->comment = $comment;
+        $this->like = $like;
     }
 
     /**
@@ -62,7 +61,8 @@ class commentNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'body' => $this->comment->user->name . " comment Your Post"
+            'body' => $this->like->user->name . " reacted Your Post",
+            'post' => $this->like->post_id,
         ];
     }
 }

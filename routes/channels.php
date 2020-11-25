@@ -19,3 +19,15 @@ Broadcast::channel('messages.{id}', function ($user, $id) {
 
     return  $user->id === (int) $id;
 });
+Broadcast::channel('CommentAdd.{id}', function ($user, $id) {
+
+    return  $user->id === (int) $id;
+});
+Broadcast::channel('friend-Request.{id}', function ($user, $id) {
+
+    return  $user->id === (int) $id;
+});
+Broadcast::channel('React-post.{id}', function ($user, $id) {
+
+    return  $user->id === (int) $id;
+});

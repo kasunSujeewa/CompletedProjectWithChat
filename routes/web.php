@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 
 Route::get('/', function () {
@@ -52,3 +53,5 @@ Route::post('/makeChat', 'ChatController@index1');
 Route::get('/getChats/{id}', 'ChatController@chatCollection');
 Route::get('/messages/{sessionKey}', 'MessageController@getMessage');
 Route::post('/messageSend', 'MessageController@saveMessage');
+Route::get('/Usersnotifications/{id}', 'HomeController@notificationGet');
+Route::delete('/markAsreadNotifications/{id}', 'HomeController@notificationmarkAsRead');

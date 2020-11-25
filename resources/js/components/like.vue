@@ -155,6 +155,13 @@ export default {
       this.getLike();
       this.$emit("reacted");
     });
+    Echo.private(`React-post.${this.admin.id}`).listen(
+      "ReactHandleNotification",
+      (e) => {
+        this.getLike();
+        this.$emit("reacted");
+      }
+    );
   },
 };
 </script>

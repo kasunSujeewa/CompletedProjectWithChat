@@ -10,18 +10,18 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class friendRequest implements ShouldBroadcast
+class ReactHandleNotification implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $FriendRequest;
+    public $like;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($FriendRequest)
+    public function __construct($like)
     {
-        $this->FriendRequest = $FriendRequest;
+        $this->like = $like;
     }
 
     /**
@@ -31,6 +31,6 @@ class friendRequest implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('friend-Request.' . $this->FriendRequest->friend_id);
+        return new PrivateChannel('React-post.' . $this->like->post->user_id);
     }
 }

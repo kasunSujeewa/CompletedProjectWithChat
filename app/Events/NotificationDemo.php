@@ -10,18 +10,18 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class friendRequest implements ShouldBroadcast
+class NotificationDemo implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $FriendRequest;
+    public $comment;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($FriendRequest)
+    public function __construct($comment)
     {
-        $this->FriendRequest = $FriendRequest;
+        $this->comment = $comment;
     }
 
     /**
@@ -31,6 +31,6 @@ class friendRequest implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('friend-Request.' . $this->FriendRequest->friend_id);
+        return new PrivateChannel('CommentAdd.' . $this->comment->post->user->id);
     }
 }

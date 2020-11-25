@@ -31,6 +31,7 @@ Vue.component('own-posts', require('./components/ownPost.vue').default);
 Vue.component('single-post', require('./components/SinglePost.vue').default);
 Vue.component('friend', require('./components/FriendCategories.vue').default);
 Vue.component('chat', require('./components/ChatComponent.vue').default);
+Vue.component('notifications', require('./components/notification.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

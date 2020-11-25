@@ -98,7 +98,11 @@
               >
                 Friend Requests
               </button>
-              <span class="badge badge-danger">{{ friendrq.length }}</span>
+              <small
+                ><span class="badge badge-danger">{{
+                  friendrq.length
+                }}</span></small
+              >
             </h2>
           </div>
 
@@ -298,6 +302,13 @@ export default {
       this.getFriends();
       bus.$emit("postUpload", "uploaded");
     });
+    Echo.private(`friend-Request.${this.user3.id}`).listen(
+      "friendRequest",
+      (e) => {
+        this.getFriends();
+        bus.$emit("postUpload", "uploaded");
+      }
+    );
   },
 };
 </script>
