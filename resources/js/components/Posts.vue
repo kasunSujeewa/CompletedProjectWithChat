@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Post loop -->
-    <div v-for="post in posts" :key="post.id">
+    <div  class="post_all" v-for="post in posts" :key="post.id">
       <div v-if="post.image">
         <h1 class="mt-4">{{ post.postName }}</h1>
 
@@ -10,7 +10,7 @@
           by
           <a :href="slugPath + post.user.slug">{{ post.user.name }}</a>
         </p>
-        <div v-if="post.user.id == user.id">
+        <div v-if="post.user.id == user.id" style="float: right;">
           <div class="dropdown">
             <button
               class="btn btn-link dropdown-toggle"
@@ -385,3 +385,11 @@ export default {
   },
 };
 </script>
+<style scoped>
+.post_all{
+    background: white;
+    padding: 5%;
+    border-radius: 22px;
+    margin: 5% 0% 5% 0%;
+}
+</style>

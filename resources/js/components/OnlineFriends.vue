@@ -1,6 +1,7 @@
 <template>
   <div class="online-friends d-flex-column">
-    <h2 class="d-inline-flex pb-2" style="border-bottom: 1px solid black">
+    <h2 class="d-inline-flex pb-2" style="border-bottom: 1px solid black;font-size: 22px;
+    margin-top: 6px;">
       Online Users
     </h2>
 

@@ -66,6 +66,7 @@
                 type="file"
                 @change="GetImage"
                 class="form-control"
+                id="photo_adding"
                 placeholder=""
                 name="image"
                 accept="image/*"
@@ -165,7 +166,11 @@ export default {
             "success"
           );
           bus.$emit("postUpload", "uploaded");
-          $("#add_post").val(null).trigger("change");
+          //$("#add_post").val(null).trigger("change");
+          this.newPost = '';
+          this.newPath = '';
+          this.image = '';
+          this.avatar = ''; 
         })
         .catch((error) => {
           this.error = error.response.data.message;

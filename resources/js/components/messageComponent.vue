@@ -55,7 +55,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-height: 500px;
+  height: 500px;
 
   h1 {
     margin: 0;
